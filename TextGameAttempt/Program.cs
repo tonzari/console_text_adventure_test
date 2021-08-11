@@ -38,7 +38,9 @@ namespace TextGameAttempt
                 TextEffects.Typewrite($"\t\t\tThis room seems to be {player.currentRoom.name}.");
                 TextEffects.Typewrite($"\n\n\n\t\t\tMap coordinates: {player.currentRoom.x}, {player.currentRoom.y}");
                 TextEffects.Typewrite("\n\n\n\t\t\tuse the arrow keys to explore");
-                TextEffects.Typewrite("\n\t\t\t[left][right][up][down]");
+                TextEffects.Typewrite("\n\t\t\t\t[up]");
+                TextEffects.Typewrite("\n\t\t\t[left] [down] [right]");
+                TextEffects.Typewrite("\n\n\n\t\t\tuse [spacebar] if you find yourself in danger....");
 
 
                 while (player.state != State.WON)
@@ -61,6 +63,8 @@ namespace TextGameAttempt
                     }
                     else if (player.state == State.EXPLORING)
                     {
+                        Console.ResetColor();
+
                         key = Console.ReadKey(false).Key;
 
                         switch (key)

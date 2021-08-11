@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EffectsPlayground;
+using System.Threading;
 
 namespace TextGameAttempt
 {
@@ -88,20 +89,28 @@ namespace TextGameAttempt
 
                     room.accessed = true;
 
-                    TextEffects.Typewrite($"\t\t\tYou are currently in {currentRoom.name}.");
+                    TextEffects.Typewrite($"\n\n\n\t\t\tYou are currently in {currentRoom.name}.");
                     TextEffects.Typewrite($"\n\t\t\tMap coordinates: { currentRoom.x}, { currentRoom.y} \n");
 
                     // check room details, like enemies
                     if (currentRoom.enemies.Count > 0)
                     {
+                        Thread.Sleep(2000);
+
+                        Console.Clear();
+                        
+                        Console.ForegroundColor = ConsoleColor.Red;
+
                         state = State.FIGHTING;
 
-                        TextEffects.Typewrite("\t\t\tUH OH. There are enemies in this room... ");
+                        TextEffects.Typewrite("\n\n\n\t\t\tUH OH. There are enemies in this room... ");
 
                         foreach (Enemy enemy in currentRoom.enemies)
                         {
                             TextEffects.Typewrite($"\n\t\t\tA {enemy.name} blocks your path! Fight to escape!\n");
                         }
+
+                        Console.ForegroundColor = ConsoleColor.Yellow;
 
                         TextEffects.Typewrite("\t\t\tHit the spacebar to attack!");
                     }
@@ -117,6 +126,8 @@ namespace TextGameAttempt
             {
                 if (currentRoom.enemies.Count > 0)
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                     int randomIndex = r.Next(0, currentRoom.enemies.Count());
                     Enemy targettedEnemy = currentRoom.enemies[randomIndex];
 
@@ -125,7 +136,9 @@ namespace TextGameAttempt
 
                     if (targettedEnemy.Health <= 0)
                     {
-                        TextEffects.Typewrite($"\nYou've defeated {targettedEnemy.name}!");
+                        Console.ForegroundColor = ConsoleColor.Green;
+
+                        TextEffects.Typewrite($"\n\t\t\tYou've defeated {targettedEnemy.name}!");
                         currentRoom.enemiesDefeated.Add(targettedEnemy);
                         currentRoom.enemies.RemoveAt(randomIndex);
                     }
@@ -133,7 +146,7 @@ namespace TextGameAttempt
                     if (currentRoom.enemies.Count == 0)
                     {
                         state = State.EXPLORING;
-                        TextEffects.Typewrite("It's safe to leave the room now.\n");
+                        TextEffects.Typewrite("\n\t\t\tIt's safe to leave the room now.\n");
                     }
                 }
             }
