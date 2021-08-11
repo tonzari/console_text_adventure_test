@@ -90,8 +90,14 @@ namespace TextGameAttempt
                     // Test condition to get out of loop, see if last room added to list. change this later
                     if (player.currentRoom == player.currentMap.rooms.Last())
                     {
-                        TextEffects.Typewrite($"\n\n\n\t\t\tYou found {player.currentRoom.name}: {player.currentRoom.x}, {player.currentRoom.y} \n");
-                        //game.wonGame = true;
+                        Thread.Sleep(2000);
+
+                        Console.Clear();
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+
+                        TextEffects.Typewrite($"\n\n\n\n\n\t\t\tYou escaped!! YOU WIN. \n");
+
                         player.state = State.WON;
                     }
                 }
@@ -145,10 +151,12 @@ namespace TextGameAttempt
 
         private static bool UserWantsToPlayAgain()
         {
-            Console.WriteLine("===========END===========");
-            Console.WriteLine("========PLAY AGAIN?======");
+            Console.ResetColor();
 
-            string input = Console.ReadLine();
+            Console.WriteLine("\n\n\t\t\t===========END===========");
+            Console.WriteLine("\t\t\t========PLAY AGAIN?======");
+
+            string input = "\t\t\t" + Console.ReadLine();
 
             List<string> acceptedResponses = new List<string> { "yes", "no", "y", "n", "okay", "sure", "yep", "k", "ok", "yeah", "nah", "nope", "absolutely", "absolutely not", "no way", "hell yeah", "heck yeah", "claro", "claro que si", "si", "yes please", "of course", "no thank you", "no thanks" };
 

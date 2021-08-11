@@ -78,7 +78,7 @@ namespace TextGameAttempt
 
                         if (currentRoom.enemiesDefeated.Count > 0 && currentRoom.enemies.Count == 0)
                         {
-                            TextEffects.Typewrite("\t\t\tThere are some defeated enemies on the ground...");
+                            TextEffects.Typewrite("\n\t\t\tThere are some defeated enemies on the ground...\n");
                             
                             foreach (Enemy enemy in currentRoom.enemiesDefeated)
                             {
@@ -103,16 +103,20 @@ namespace TextGameAttempt
 
                         state = State.FIGHTING;
 
-                        TextEffects.Typewrite("\n\n\n\t\t\tUH OH. There are enemies in this room... ");
+                        TextEffects.TypewriteHumanized("\n\n\n\n\n\t\t\tUH OH. There are enemies in this room... ");
+
+                        Thread.Sleep(2000);
+
+                        Console.Clear();
 
                         foreach (Enemy enemy in currentRoom.enemies)
                         {
-                            TextEffects.Typewrite($"\n\t\t\tA {enemy.name} blocks your path! Fight to escape!\n");
+                            TextEffects.Typewrite($"\n\n\n\n\n\t\t\tA {enemy.name} blocks your path! Fight to escape!\n");
                         }
 
                         Console.ForegroundColor = ConsoleColor.Yellow;
 
-                        TextEffects.Typewrite("\t\t\tHit the spacebar to attack!");
+                        TextEffects.Typewrite("\n\n\n\n\n\t\t\tHit the spacebar to attack!");
                     }
                 }
             }
@@ -131,14 +135,38 @@ namespace TextGameAttempt
                     int randomIndex = r.Next(0, currentRoom.enemies.Count());
                     Enemy targettedEnemy = currentRoom.enemies[randomIndex];
 
-                    Console.WriteLine($"\n\n\n\t\t\tYou kicked {targettedEnemy.name}!");
+                    Console.Clear();
+
+                    int newLineCount = r.Next(3,10);
+                    int tabCount = r.Next(3,10);
+                    string newLineChain = "";
+                    string tabChain = "";
+
+                    for (int i = 0; i < newLineCount; i++)
+                    {
+                        newLineChain += "\n";
+                    }
+
+                    for (int i = 0; i < tabCount; i++)
+                    {
+                        tabChain += "\t";
+                    }
+
+                    Console.WriteLine($"{newLineChain}{tabChain}You kicked {targettedEnemy.name}!");
                     targettedEnemy.Health -= 1;
 
                     if (targettedEnemy.Health <= 0)
                     {
+                        Thread.Sleep(2000);
+
+                        Console.Clear();
+
                         Console.ForegroundColor = ConsoleColor.Green;
 
-                        TextEffects.Typewrite($"\n\t\t\tYou've defeated {targettedEnemy.name}!");
+                        TextEffects.Typewrite($"\n\n\n\n\t\t\tYou've defeated {targettedEnemy.name}!");
+
+                        Thread.Sleep(2000);
+
                         currentRoom.enemiesDefeated.Add(targettedEnemy);
                         currentRoom.enemies.RemoveAt(randomIndex);
                     }
@@ -146,6 +174,9 @@ namespace TextGameAttempt
                     if (currentRoom.enemies.Count == 0)
                     {
                         state = State.EXPLORING;
+
+                        Console.ResetColor();
+
                         TextEffects.Typewrite("\n\t\t\tIt's safe to leave the room now.\n");
                     }
                 }
