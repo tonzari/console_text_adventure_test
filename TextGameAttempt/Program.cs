@@ -153,10 +153,12 @@ namespace TextGameAttempt
         {
             Console.ResetColor();
 
-            Console.WriteLine("\n\n\t\t\t===========END===========");
-            Console.WriteLine("\t\t\t========PLAY AGAIN?======");
+            Console.WriteLine("\n\n\t\t\t================ E N D ================");
+            Console.WriteLine("\t\t\t    ========  P L A Y   A G A I N ?  ======");
 
-            string input = "\t\t\t" + Console.ReadLine();
+            Console.WriteLine("\n\n\t\t\t");
+
+            string input = Console.ReadLine();
 
             List<string> acceptedResponses = new List<string> { "yes", "no", "y", "n", "okay", "sure", "yep", "k", "ok", "yeah", "nah", "nope", "absolutely", "absolutely not", "no way", "hell yeah", "heck yeah", "claro", "claro que si", "si", "yes please", "of course", "no thank you", "no thanks" };
 
