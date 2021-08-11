@@ -16,6 +16,8 @@ namespace EffectsPlayground
                 Console.Write(message[i]);
                 Thread.Sleep(duration);
             }
+
+            Console.WriteLine();
         }
 
 /*        public static void TypewriteWithSounds(string message)

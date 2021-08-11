@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextGameAttempt", "TextGameAttempt\TextGameAttempt.csproj", "{8AA62A68-8CB0-4C3D-9235-94F7F2708E12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextGameState", "TextGameState\TextGameState.csproj", "{A54F2490-219C-45AA-9A2A-29EA332C366C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextGameState", "TextGameState\TextGameState.csproj", "{A54F2490-219C-45AA-9A2A-29EA332C366C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07881843-E3A7-4AFD-A0BB-51B0B5E0A609}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
