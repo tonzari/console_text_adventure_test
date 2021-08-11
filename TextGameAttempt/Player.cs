@@ -89,7 +89,7 @@ namespace TextGameAttempt
                     room.accessed = true;
 
                     TextEffects.Typewrite($"\t\t\tYou are currently in {currentRoom.name}.");
-                    TextEffects.Typewrite($"\n\t\t\tMap coordinates: { currentRoom.x}, { currentRoom.y} \n")
+                    TextEffects.Typewrite($"\n\t\t\tMap coordinates: { currentRoom.x}, { currentRoom.y} \n");
 
                     // check room details, like enemies
                     if (currentRoom.enemies.Count > 0)
