@@ -27,12 +27,8 @@ namespace TextGameAttempt
                 Player player = InitializeGame(_roomRepository.AllRooms.ToList());
                 ConsoleKey key;
 
-
-                // MAP TEST
                 MapVisualizer mapVisualizer = new MapVisualizer();
                 MapVisualizer.PrintMap(player);
-                // END MAP TEST
-
 
                 TextEffects.TypewriteHumanized($"\n\n\n\t\t\tYou wake up in an unfamiliar place. You're inside an old home. Feels a bit like a haunted house in here...");
                 TextEffects.Typewrite($"\t\t\tThis room seems to be {player.currentRoom.name}.");
@@ -41,7 +37,6 @@ namespace TextGameAttempt
                 TextEffects.Typewrite("\n\t\t\t\t[up]");
                 TextEffects.Typewrite("\n\t\t\t[left] [down] [right]");
                 TextEffects.Typewrite("\n\n\n\t\t\tuse [spacebar] if you find yourself in danger....");
-
 
                 while (player.state != State.WON)
                 {         
@@ -154,7 +149,7 @@ namespace TextGameAttempt
             Console.ResetColor();
 
             Console.WriteLine("\n\n\t\t\t================ E N D ================");
-            Console.WriteLine("\t\t\t    ========  P L A Y   A G A I N ?  ======");
+            Console.WriteLine("\t\t\t========  P L A Y   A G A I N ?  ======");
 
             Console.WriteLine("\n\n\t\t\t");
 
@@ -170,59 +165,6 @@ namespace TextGameAttempt
             }
 
             return false;
-        }
-    }
-
-    // TO DO try out map visualization
-    class MapVisualizer
-    {
-        public static void PrintMap(Player player)
-        {
-            Map map = player.currentMap;
-            MockRoomRepository _roomRepository = new MockRoomRepository();
-
-
-            int furthestX = 0;
-            int furthestY = 0;
-
-            for (int i = 0; i < map.rooms.Count; i++)
-            {
-                if (map.rooms[i].x > furthestX)
-                {
-                    furthestX = map.rooms[i].x;
-                }
-
-                if (map.rooms[i].y > furthestY)
-                {
-                    furthestY = map.rooms[i].y;
-                }
-            }
-
-            for (int row = furthestY; row >= 0; row--)
-            {
-                for (int column = 0; column <= furthestX; column++)
-                {
-                    if (player.currentRoom.x == column && player.currentRoom.y == row)
-                    {
-                        Console.Write(" O ");
-                    }
-                    else
-                    {
-                        Room roomMatch = _roomRepository.GetRoomByCoord(column, row);
-
-                        if (roomMatch != null) // && roomMatch.accessed)
-                        {
-                            Console.Write(" - ");
-                        }
-                        else
-                        {
-                            Console.Write(" ~ ");
-                        }
-                    }
-                }
-
-                Console.WriteLine();
-            }
         }
     }
 }

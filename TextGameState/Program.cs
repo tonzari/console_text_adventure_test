@@ -71,6 +71,8 @@ namespace TextGameState
         }
     }
 
+    // test states
+
     public class StartState : State
     {
         ConsoleKey key;
